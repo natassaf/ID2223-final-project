@@ -3,3 +3,6 @@ pandas==2.1.4
 python-dotenv==1.0.1
 hopsworks==4.1.4
 hopsworks[python]
+scikit-learn==1.5.2 
+# Plot charts
+matplotlib==3.8.3

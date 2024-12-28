@@ -33,16 +33,16 @@ jobs:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
         run: |
           cd notebooks/ch03
-          jupyter nbconvert --to notebook --execute 2_air_quality_feature_pipeline.ipynb
-          jupyter nbconvert --to notebook --execute 4_air_quality_batch_inference.ipynb
+          jupyter nbconvert --to notebook --execute feature_pipeline.ipynb
+          jupyter nbconvert --to notebook --execute inference_pipeline.ipynb
 
       - name: github pages publish
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Air Quality Dashboard published"
+          commit_message: "Solana Prices Dashboard published"
           commit_options: '--no-verify --signoff'
 
-          file_pattern: 'docs/air-quality/assets/img/* docs/_includes/*'
+          file_pattern: 'docs/solana/assets/img/* docs/_includes/*'
 
           repository: .
 
