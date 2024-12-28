@@ -15,6 +15,10 @@ import hopsworks
 import hsfs
 from pathlib import Path
 
+
+fng_labels_to_numbers_map={"Extreme Fear":0, "Fear":1, "Neutral":2, "Greed":3, "Extreme Greed":4} 
+fng_numbers_to_labels_map={0:"Extreme Fear", 1:"Fear", 2:"Neutral", 3:"Greed", 4:"Extreme Greed"} 
+
 def trigger_request(url:str, params:dict):
     response = requests.get(url, params)
     if response.status_code == 200:
