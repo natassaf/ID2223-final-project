@@ -6,3 +6,4 @@ hopsworks[python]
 scikit-learn==1.5.2 
 # Plot charts
 matplotlib==3.8.3
+tensorflow==2.16.1

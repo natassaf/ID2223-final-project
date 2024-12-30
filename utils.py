@@ -34,6 +34,6 @@ def trigger_request(url:str, params:dict):
 def secrets_api(proj):
     host = "c.app.hopsworks.ai"
     api_key = os.environ.get('HOPSWORKS_API_KEY')
-    print(f"api_key {api_key}")
+    #print(f"api_key {api_key}")
     conn = hopsworks.connection(host=host, project=proj, api_key_value=api_key)
     return conn.get_secrets_api()
