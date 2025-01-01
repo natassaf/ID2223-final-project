@@ -46,7 +46,7 @@ def create_sequences(data, time_steps, num_predictions):
     X, y = [], []
     for i in range(len(data) - (time_steps+num_predictions)):
         first_label_row_index = i+time_steps
-        row = data[i:first_label_row_index, :-1]
+        row = data[i:first_label_row_index]
         
         X.append(row) 
         labels = data[first_label_row_index:first_label_row_index+num_predictions, -1]
@@ -80,6 +80,7 @@ def move_target_at_the_end(data:pd.DataFrame, target_column:str)->pd.DataFrame:
     columns.append('open_solana')  
     data = data[columns] 
     return data
+
 
 # Legacy Functions -to be deleted
 
