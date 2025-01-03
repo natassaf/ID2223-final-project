@@ -2,19 +2,21 @@ import os
 import datetime
 import time
 import requests
-import pandas as pd
 import json
 import numpy as np
 #from geopy.geocoders import Nominatim
-#import matplotlib.pyplot as plt
-#from matplotlib.patches import Patch
-#from matplotlib.ticker import MultipleLocator
 #import openmeteo_requests
 #import requests_cache
 #from retry_requests import retry
 import hopsworks
 import hsfs
 from pathlib import Path
+
+import pandas as pd
+from matplotlib.patches import Patch
+from matplotlib.ticker import MultipleLocator
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 fng_labels_to_numbers_map={"Extreme Fear":0, "Fear":1, "Neutral":2, "Greed":3, "Extreme Greed":4} 
@@ -80,6 +82,136 @@ def move_target_at_the_end(data:pd.DataFrame, target_column:str)->pd.DataFrame:
     columns.append('open_solana')  
     data = data[columns] 
     return data
+
+
+
+
+def plot_solana_actual_vs_predictions(df: pd.DataFrame, confidence_lower: pd.Series, confidence_upper: pd.Series, file_path: str):
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Convert date column to datetime
+    df['date'] = pd.to_datetime(df['date']).dt.date
+    dates = df['date']
+
+    # Plot actual and predicted prices
+    ax.plot(dates, df['solana_open_actual'], label='Actual Prices', color='blue', linewidth=2, marker='o', markersize=5, markerfacecolor='blue')
+    ax.plot(dates, df['solana_open_pred'], label='Predicted Prices', color='red', linewidth=2, marker='o', markersize=5, markerfacecolor='red')
+
+    # Plot the confidence interval
+    ax.fill_between(dates, confidence_lower, confidence_upper, color='gray', alpha=0.2, label='Confidence Interval')
+
+    # Set labels and title
+    ax.set_xlabel('Date')
+    ax.set_title('Prediction vs. Actual Solana Prices')
+    ax.set_ylabel('Solana Price (USD)')
+
+    # Add the grid and the legend
+    ax.legend()
+    ax.grid()
+
+    # Aim for ~10 annotated values on x-axis
+    if len(df.index) > 11:
+        every_x_tick = len(df.index) / 10
+        ax.xaxis.set_major_locator(MultipleLocator(every_x_tick))
+
+    # Rotate x-axis labels
+    plt.xticks(rotation=45)
+
+    # Ensure everything is laid out neatly
+    plt.tight_layout()
+
+    # Save the figure, overwriting any existing file with the same name
+    plt.savefig(file_path)
+    return plt
+
+
+def plot_solana_predictions(df: pd.DataFrame, file_path: str):
+    fig, ax = plt.subplots(figsize=(10, 6))
+
+    # Convert date column to datetime
+    df['date'] = pd.to_datetime(df['date']).dt.date
+    dates = df['date']
+
+    # Plot predicted prices
+    ax.plot(dates, df['solana_open_pred'], label='Predicted Prices', color='red', linewidth=2, marker='o', markersize=5, markerfacecolor='red')
+
+    # Set labels and title
+    ax.set_xlabel('Date')
+    ax.set_title('Predicted Solana Prices')
+    ax.set_ylabel('Solana Price (USD)')
+
+    # Add the grid and the legend
+    ax.legend()
+    ax.grid()
+
+    # Aim for ~10 annotated values on x-axis
+    if len(df.index) > 11:
+        every_x_tick = len(df.index) / 10
+        ax.xaxis.set_major_locator(MultipleLocator(every_x_tick))
+
+    # Rotate x-axis labels
+    plt.xticks(rotation=45)
+
+    # Ensure everything is laid out neatly
+    plt.tight_layout()
+
+    # Save the figure, overwriting any existing file with the same name
+    plt.savefig(file_path)
+    return plt
+
+
+
+
+
+# Assuming sln_btc_fng_join is your DataFrame
+def plot_correlation_heatmap(df,file_path):
+    # Select the relevant columns for correlation analysis
+    df_corr = df[['btc_open', 'solana_open_actual', 'fng_value']]
+
+    # Compute the correlation matrix
+    corr_matrix = df_corr.corr()
+
+    # Plot the heatmap
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+    plt.title("Correlation Heatmap")
+
+    # Ensure everything is laid out neatly
+    plt.tight_layout()
+
+    plt.savefig(file_path)
+
+    return plt
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+def plot_trend_analysis(df, file_path):
+
+
+    # Plotting the historical data
+    plt.figure(figsize=(12, 8))
+    plt.plot(df['date'], df["btc_open"], label='Bitcoin Prices (Historical)', color='blue', marker='o')
+    plt.plot(df['date'], df["solana_open_actual"], label='Solana Prices (Historical)', color='green', marker='o')
+    plt.plot(df['date'], df["fng_value"], label='Fear and Greed Index (Historical)', color='orange', marker='o')
+
+    # Plotting the forecasted data
+    plt.plot(df['date'], df["solana_open_pred"], label='Solana Prices (Forecasted)', color='green', linestyle='--', marker='x')
+
+    # Customizing the plot
+    plt.title("Trend Analysis: Bitcoin, Solana, and Fear & Greed Index (Historical vs Forecasted)")
+    plt.xlabel("Date")
+    plt.ylabel("Value")
+    plt.xticks(rotation=45)
+    plt.legend(loc='upper left')
+
+    # Show plot
+    plt.tight_layout()
+
+    plt.savefig(file_path)
+
+    return plt
 
 
 # Legacy Functions -to be deleted

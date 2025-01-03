@@ -35,6 +35,7 @@ jobs:
           cd notebooks/ch03
           jupyter nbconvert --to notebook --execute feature_pipeline.ipynb
           jupyter nbconvert --to notebook --execute inference_pipeline.ipynb
+          jupyter nbconvert --to notebook --execute plots.ipynb
 
       - name: github pages publish
         uses: stefanzweifel/git-auto-commit-action@v5
