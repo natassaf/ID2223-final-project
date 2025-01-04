@@ -24,15 +24,14 @@ jobs:
           cache: 'pip'
       - name: install python packages
         run: |
-          cd notebooks/ch03
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: execute python workflows from bash script
         env:
           HOPSWORKS_API_KEY: ${{ secrets.HOPSWORKS_API_KEY }}
+          CRYPTO_API_KEY: ${{ secrets.CRYPTO_API_KEY }}
         run: |
-          cd notebooks/ch03
           jupyter nbconvert --to notebook --execute feature_pipeline.ipynb
           jupyter nbconvert --to notebook --execute inference_pipeline.ipynb
           jupyter nbconvert --to notebook --execute plots.ipynb
