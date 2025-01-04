@@ -5,6 +5,7 @@ Athanasia Farmaki, farmaki@kth.se
 
 Michail Roussos, michailr@kth.se
 
+GitHub Pages URL: https://natassaf.github.io/ID2223-final-project/
 
 # Description
 
