@@ -1,9 +1,9 @@
 name: crypto-daily
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '55 20 * * *'
+    - cron: '59 20 * * *'
+  workflow_dispatch:
 
 jobs:
   schedule_pipelines:
