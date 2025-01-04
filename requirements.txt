@@ -10,3 +10,4 @@ tensorflow==2.16.1
 seaborn==0.13.2
 jupyter==1.1.1
 nbconvert==7.16.5
+seaborn==0.13.2
