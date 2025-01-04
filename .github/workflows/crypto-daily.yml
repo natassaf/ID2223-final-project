@@ -3,7 +3,7 @@ name: crypto-daily
 on:
   workflow_dispatch:
   schedule:
-    - cron: '06 * * * *'
+    - cron: "08 * * * *"
 
 jobs:
   schedule_pipelines:
