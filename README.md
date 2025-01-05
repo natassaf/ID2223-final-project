@@ -27,7 +27,7 @@ For the predictions we used a LSTM Model. We have trained the model and now ever
 4. You need to create an python env (e.g. conda env) based on the 'requirements.txt' file.
 5. You need to set as environment variables the two keys as "HOPSWORKS_API_KEY" and "CRYPTO_API_KEY".
 6. Alternatively you can create a ".env" file and add the two keys there, but adjustments may be needed in the files.
-7. Run the files with the following order "feature_backfill", "feature_pipeline", "training_pipeline" and "inference_pipeline".
+7. Run the files with the following order "feature_backfill", "feature_pipeline", "training_pipeline", "inference_pipeline" and "plots".
 8. If you want to run the workflow in github you need to also create the two keys in the repository secrets.
 
 ## Sources

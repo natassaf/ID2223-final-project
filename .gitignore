@@ -2,3 +2,4 @@
 conda.sh
 .env
 .idea
+inference_pipeline copy.ipynb
