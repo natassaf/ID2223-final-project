@@ -3,7 +3,7 @@ name: crypto-daily
 on:
   workflow_dispatch:
   schedule:
-    - cron: '11 6 * * *'
+    - cron: '00 6 * * *'
 
 jobs:
   schedule_pipelines:
@@ -34,24 +34,24 @@ jobs:
         run: |
           jupyter nbconvert --to notebook --execute feature_pipeline.ipynb
           jupyter nbconvert --to notebook --execute inference_pipeline.ipynb
-          jupyter nbconvert --to notebook --execute plots.ipynb
+#          jupyter nbconvert --to notebook --execute plots.ipynb
 
-      - name: github pages publish
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Solana Prices Dashboard published"
-          commit_options: '--no-verify --signoff'
-
-          file_pattern: 'img/*'
-
-          repository: .
-
-          status_options: '--untracked-files=no'
-
-          skip_dirty_check: true
-
-          skip_fetch: true
-
-          skip_checkout: true
-
-          push_options: '--force'
+#      - name: github pages publish
+#        uses: stefanzweifel/git-auto-commit-action@v5
+#        with:
+#          commit_message: "Solana Prices Dashboard published"
+#          commit_options: '--no-verify --signoff'
+#
+#          file_pattern: 'img/*'
+#
+#          repository: .
+#
+#          status_options: '--untracked-files=no'
+#
+#          skip_dirty_check: true
+#
+#          skip_fetch: true
+#
+#          skip_checkout: true
+#
+#          push_options: '--force'
