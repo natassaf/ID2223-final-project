@@ -187,33 +187,31 @@ def plot_correlation_heatmap(df,file_path):
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def plot_trend_analysis(df, file_path):
+def plot_trend_analysis_dual_axis(df, file_path):
+    fig, ax1 = plt.subplots(figsize=(12, 8))
 
+    # Primary y-axis for Bitcoin
+    ax1.set_xlabel("Date")
+    ax1.set_ylabel("Bitcoin Prices", color="blue")
+    ax1.plot(df["date"], df["btc_open"], label="Bitcoin Prices (Historical)", color="blue", marker="o")
+    ax1.tick_params(axis="y", labelcolor="blue")
 
-    # Plotting the historical data
-    plt.figure(figsize=(12, 8))
-    plt.plot(df['date'], df["btc_open"], label='Bitcoin Prices (Historical)', color='blue', marker='o')
-    plt.plot(df['date'], df["solana_open_actual"], label='Solana Prices (Historical)', color='green', marker='o')
-    plt.plot(df['date'], df["fng_value"], label='Fear and Greed Index (Historical)', color='orange', marker='o')
+    # Secondary y-axis for Solana and Fear & Greed Index
+    ax2 = ax1.twinx()
+    ax2.set_ylabel("Solana & Fear & Greed Index", color="green")
+    ax2.plot(df["date"], df["solana_open_actual"], label="Solana Prices (Historical)", color="green", marker="o")
+    ax2.plot(df["date"], df["solana_open_pred"], label="Solana Prices (Forecasted)", color="green", linestyle="--", marker="x")
+    ax2.plot(df["date"], df["fng_value"], label="Fear and Greed Index (Historical)", color="orange", marker="o")
+    ax2.tick_params(axis="y", labelcolor="green")
 
-    # Plotting the forecasted data
-    plt.plot(df['date'], df["solana_open_pred"], label='Solana Prices (Forecasted)', color='green', linestyle='--', marker='x')
+    # Title and Legend
+    plt.title("Trend Analysis: Bitcoin, Fear & Greed Index, and Solana (Historical vs Forecasted)")
+    fig.tight_layout()
+    fig.legend(loc="upper left", bbox_to_anchor=(0.1, 0.85))
 
-    # Customizing the plot
-    plt.yscale('log')  # Set logarithmic scale for the y-axis
-    plt.title("Trend Analysis: Bitcoin, Fear & Greed Index and Solana(Historical vs Forecasted)")
-    plt.xlabel("Date")
-    plt.ylabel("Value")
-    plt.xticks(rotation=45)
-    plt.legend(loc='upper left')
-
-    # Show plot
-    plt.tight_layout()
-
+    # Save the plot
     plt.savefig(file_path)
-
-    return plt
-
+    plt.show()
 
 # Legacy Functions -to be deleted
 
