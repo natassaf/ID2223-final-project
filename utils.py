@@ -200,6 +200,7 @@ def plot_trend_analysis(df, file_path):
     plt.plot(df['date'], df["solana_open_pred"], label='Solana Prices (Forecasted)', color='green', linestyle='--', marker='x')
 
     # Customizing the plot
+    plt.yscale('log')  # Set logarithmic scale for the y-axis
     plt.title("Trend Analysis: Bitcoin, Fear & Greed Index and Solana(Historical vs Forecasted)")
     plt.xlabel("Date")
     plt.ylabel("Value")
