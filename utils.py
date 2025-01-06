@@ -17,6 +17,8 @@ from matplotlib.patches import Patch
 from matplotlib.ticker import MultipleLocator
 import seaborn as sns
 import matplotlib.pyplot as plt
+from sklearn.metrics import mean_squared_error, r2_score
+
 
 
 fng_labels_to_numbers_map={"Extreme Fear":0, "Fear":1, "Neutral":2, "Greed":3, "Extreme Greed":4} 
@@ -213,6 +215,20 @@ def plot_trend_analysis(df, file_path):
 
     return plt
 
+def evaluation_metrics(y_predictions, y_actuals):
+    y_predictions_flattened = y_predictions.flatten()
+    y_actuals_flattened = y_actuals.flatten()
+
+    mse = mean_squared_error(y_actuals_flattened, y_predictions_flattened)
+    rmse = np.sqrt(mse)
+    r_squared = r2_score(y_actuals_flattened, y_predictions_flattened)
+
+    res_dict = { 
+            "mse": str(mse),
+            "r_squared": str(r_squared),
+        }
+    
+    return res_dict
 # Legacy Functions -to be deleted
 
 # def create_featured_label(data, time_steps, num_predictions):
