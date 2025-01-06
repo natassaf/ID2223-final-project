@@ -21,9 +21,10 @@ The framework we are using for the model is tensorflow's keras, sklearn for the 
 
 ## Method
 
-For the predictions we used an LSTM Model. We have trained the model and now everyday when the workflow is executed new predictions will be made for the following 10 days. New plots are also being created to depict the updated data.
+Predictions are generated using an LSTM model, which is manually trained. Each day, when the workflow is executed, the model forecasts prices for the next 10 days. Updated plots are also created to visualize the latest data trends.
 
-Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) architecture designed to effectively model and learn from sequential or time-series data. It was specifically developed to address the shortcomings of traditional RNNs such as the vanishing/exploding gradients during training. We chose LSTM for this task because it is particularly well-suited for time-series prediction problems like forecasting cryptocurrency prices.
+Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) architecture designed to effectively model sequential or time-series data. It was specifically developed to address the shortcomings of traditional RNNs such as the vanishing/exploding gradients during training. We chose LSTM for this task because it is particularly well-suited for time-series prediction problems like forecasting cryptocurrency prices. We use 15 time steps as input and we set the number of hidden states to 30 for the LSTM layer. On top of the LSTM layer we add a Dense Layer with 10 Neurons to enable the modelling of non-linear relationships. The last linear layer is used to return the predictions of 10 days and thus we add 10 neurons on the last layer.  
+
 
 ## Instructions
 
@@ -40,6 +41,9 @@ Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) archit
 [1] https://developers.cryptocompare.com/documentation/data-api/spot_v1_historical_days
 [2] https://alternative.me/crypto/fear-and-greed-index/#api
 
+
+## References
+1. Introduction to Long Short-Term Memory (LSTM) - Analytics Vidhya blog post, March 2021.
 
 # Results - Solana Price Prediction Dashboard
 
@@ -67,6 +71,3 @@ Here we have the trend analysis for the open values of Solana (actual and predic
 ![Trend_analysis](./img/trend_analisis.png)
 
 
-## References
-
-1. Introduction to Long Short-Term Memory (LSTM) - Analytics Vidhya blog post, March 2021.
