@@ -7,17 +7,23 @@ Michail Roussos, michailr@kth.se
 
 GitHub Pages URL: https://natassaf.github.io/ID2223-final-project/
 
-# Description
+# Problem Description
 
 We implemented an MLOPS pipeline for predicting Solana prices. As input we are using historical Solana prices, Bitcoin prices and the Fear and Greed index. We saved all the data in Hopsworks. We created a GitHub Actions Workflow so that every day we fetch the new data and make new predictions. We are also creating some graphs that are also updated daily.
 
 ## Data
 
-We downloaded historical data for Bitcoin and Solana from the first site in the sources and stored it locally. We also get all the fear and greed index info from the second url in the sources. We created three feature groups, one for solana, one for bitcoin and one for the fear and greed index. We start by storing in the respective feature groups the historical data. Then everyday that the workflow is executed the data is updated with recent values, before we make predictions.
+We downloaded historical data for Bitcoin and Solana from url [1] in the sources and stored it locally. We also get all the fear and greed index info from url [2] in the sources. We created three feature groups, one for solana, one for bitcoin and one for the fear and greed index. We start by storing in the respective feature groups the historical data. Then everyday that the workflow is executed the data is updated with recent values, before we make predictions.
+
+## Tools
+
+The framework we are using for the model is tensorflow's keras, sklearn for the scalers and the metric's calculation and matplotlib and seaborn for the plots.
 
 ## Method
 
-For the predictions we used a LSTM Model. We have trained the model and now everyday when the workflow is executed new predictions will be made for the following 10 days. New plots are also being created to depict the updated data.
+For the predictions we used an LSTM Model. We have trained the model and now everyday when the workflow is executed new predictions will be made for the following 10 days. New plots are also being created to depict the updated data.
+
+Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) architecture designed to effectively model and learn from sequential or time-series data. It was specifically developed to address the shortcomings of traditional RNNs such as the vanishing/exploding gradients during training. We chose LSTM for this task because it is particularly well-suited for time-series prediction problems like forecasting cryptocurrency prices.
 
 ## Instructions
 
@@ -61,3 +67,6 @@ Here we have the trend analysis for the open values of Solana (actual and predic
 ![Trend_analysis](./img/trend_analisis.png)
 
 
+## References
+
+1. Introduction to Long Short-Term Memory (LSTM) - Analytics Vidhya blog post, March 2021.
