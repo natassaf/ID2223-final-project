@@ -215,6 +215,28 @@ def plot_trend_analysis(df, file_path):
 
     return plt
 
+def plot_trend_analysis_table(df, file_path):
+
+    # Plot the DataFrame as a table
+    fig, ax = plt.subplots(figsize=(10, 4))  # Adjust size as needed
+    ax.axis('tight')  # Remove axes for better table rendering
+    ax.axis('off')    # Turn off the axis
+
+    # Render the table
+    table = ax.table(cellText=df.values, colLabels=df.columns, loc='center', cellLoc='center')
+
+    # Style the table (optional)
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
+
+    # Save the table as an image
+    plt.savefig(file_path, bbox_inches='tight', dpi=300)
+
+
+    return plt
+
+
 def evaluation_metrics(y_predictions, y_actuals):
     y_predictions_flattened = y_predictions.flatten()
     y_actuals_flattened = y_actuals.flatten()
