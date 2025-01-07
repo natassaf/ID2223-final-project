@@ -39,6 +39,7 @@ Long Short-Term Memory (LSTM) is a type of recurrent neural network (RNN) archit
 
 ## Sources
 [1] https://developers.cryptocompare.com/documentation/data-api/spot_v1_historical_days
+
 [2] https://alternative.me/crypto/fear-and-greed-index/#api
 
 
