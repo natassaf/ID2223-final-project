@@ -4,19 +4,10 @@ import time
 import requests
 import json
 import numpy as np
-#from geopy.geocoders import Nominatim
-#import openmeteo_requests
-#import requests_cache
-#from retry_requests import retry
 import hopsworks
-import hsfs
-from pathlib import Path
-
 import pandas as pd
-from matplotlib.patches import Patch
 from matplotlib.ticker import MultipleLocator
 import seaborn as sns
-import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, r2_score
 
 
@@ -235,10 +226,6 @@ def plot_trend_analysis_table(df, file_path):
 
 
     return plt
-
-import matplotlib.pyplot as plt
-
-import matplotlib.pyplot as plt
 
 def plot_trend_comparison(df, file_path):
     # Create the plots
