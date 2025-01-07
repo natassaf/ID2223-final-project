@@ -236,6 +236,50 @@ def plot_trend_analysis_table(df, file_path):
 
     return plt
 
+import matplotlib.pyplot as plt
+
+import matplotlib.pyplot as plt
+
+def plot_trend_comparison(df, file_path):
+    # Create the plots
+    plt.figure(figsize=(12, 10))
+
+    # Plot 1: BTC Open
+    plt.subplot(3, 1, 1)
+    plt.plot(df["date"], df['btc_open'], label='BTC Open', color='blue', marker='o')
+    plt.title('BTC Open Prices')
+    plt.xlabel('Date')
+    plt.ylabel('Price (USD)')
+    plt.grid(True)
+    plt.legend()
+
+    # Plot 2: Solana Open Actual
+    plt.subplot(3, 1, 2)
+    plt.plot(df["date"], df['solana_open_actual'], label='Solana Open Actual', color='green', marker='o')
+    plt.title('Solana Open Actual Prices')
+    plt.xlabel('Date')
+    plt.ylabel('Price (USD)')
+    plt.grid(True)
+    plt.legend()
+
+    # Plot 3: Solana Open Predicted
+    plt.subplot(3, 1, 3)
+    plt.plot(df["date"], df['solana_open_pred'], label='Solana Open Predicted', color='red', linestyle='--', marker='x')
+    plt.title('Solana Open Predicted Prices')
+    plt.xlabel('Date')
+    plt.ylabel('Price (USD)')
+    plt.grid(True)
+    plt.legend()
+
+    # Adjust layout and save the plot
+    plt.tight_layout()
+    plt.savefig(file_path, dpi=300, bbox_inches='tight')
+    plt.close()
+
+    print(f"Trend comparison plot saved as '{file_path}'")
+
+
+
 
 def evaluation_metrics(y_predictions, y_actuals):
     y_predictions_flattened = y_predictions.flatten()
