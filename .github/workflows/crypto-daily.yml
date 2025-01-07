@@ -43,7 +43,7 @@ jobs:
           commit_message: "Solana Prices Dashboard published"
           commit_options: '--no-verify --signoff'
 
-          file_pattern: 'img/*'
+          file_pattern: 'docs/*'
 
           repository: .
 
