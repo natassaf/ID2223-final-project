@@ -21,7 +21,7 @@ Here we have the correlation heatmap for the open values of Solana, Bitcoin and 
 
 
 ## Trend Analysis
-Here we have the trend analysis for the open values of Solana (actual and predictions), Bitcoin and Fear and Greed index.
+Here we have a comparison between the open values of Solana (actual and predictions) and Bitcoin.
 ![Trend_analysis](./assets/img/trend_analisis.png)
 
 
